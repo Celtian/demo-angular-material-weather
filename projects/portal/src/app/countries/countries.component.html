@@ -1,9 +1,24 @@
+<div class="flex gap-2 mb-4">
+  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'list' }">
+    <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="list"></mat-icon>
+  </a>
+  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'grid' }">
+    <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="grid_view"></mat-icon>
+  </a>
+</div>
+
 @if (isLoading()) {
   <div class="flex items-center justify-center min-h-96">
     <mat-spinner [diameter]="20"></mat-spinner>
   </div>
 } @else {
-  <div class="space-y-2">
+  <div
+    [ngClass]="{
+      'grid-cols-1 sm:grid-cols-3': view() === 'grid',
+      'grid-cols-1': view() === 'list',
+    }"
+    class="grid grid-cols-1 gap-2"
+  >
     @for (item of countries(); track item.iso3) {
       <div class="flex gap-2 items-baseline justify-between py-2 px-4 mat-elevation-z2 rounded-sm">
         <div class="flex items-baseline gap-2">

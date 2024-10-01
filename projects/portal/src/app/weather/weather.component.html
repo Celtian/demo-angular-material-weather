@@ -5,7 +5,11 @@
 } @else {
   @if (country()) {
     @if (data(); as d) {
-      <h1 class="font-bold mb-2">{{ d.name }}</h1>
+      <div class="flex gap-2 items-center mb-2">
+        <app-weather-icon [state]="'SUNNY'"></app-weather-icon>
+        <h1 class="font-bold">{{ d.name }}</h1>
+      </div>
+
       <div class="space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="p-3 mat-elevation-z2 rounded-sm space-y-2">
