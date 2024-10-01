@@ -2,6 +2,12 @@
   <mat-toolbar color="primary" role="navigation">
     <nav class="container flex items-center justify-between gap-2">
       <a mat-button [routerLink]="['/']">Weather DEMO</a>
+
+      <div class="flex gap-4">
+        <a mat-button [routerLink]="['/', ROUTE_DEFINITION.APP.COUNTRIES]">Countries</a>
+
+        <a mat-button [routerLink]="['/', ROUTE_DEFINITION.APP.WEATHER]">Weather</a>
+      </div>
     </nav>
   </mat-toolbar>
 </header>
@@ -10,6 +16,6 @@
 </main>
 <footer class="fixed bottom-0 w-full text-center">
   <mat-toolbar color="primary">
-    <div class="container text-sm">todo</div>
+    <div class="container text-sm">All rights reserved © 2024</div>
   </mat-toolbar>
 </footer>

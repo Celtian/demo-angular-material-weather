@@ -1,0 +1,9 @@
+<p>countries works!</p>
+
+@if (isLoading()) {
+  <div class="flex items-center justify-center min-h-96">
+    <mat-spinner [diameter]="20"></mat-spinner>
+  </div>
+} @else {
+  <pre>{{ data() | json }}</pre>
+}
