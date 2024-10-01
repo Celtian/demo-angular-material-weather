@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { finalize, tap } from 'rxjs';
@@ -11,7 +12,7 @@ import { ApiService } from '../shared/services/api.service';
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [MatProgressSpinner, MapComponent, WeatherIconComponent, RouterLink],
+  imports: [MatProgressSpinner, MapComponent, WeatherIconComponent, RouterLink, MatButtonModule],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +39,7 @@ export class WeatherComponent {
   constructor() {
     effect(() => {
       this.api
-        .weather(this.units(), this.country())
+        .weather(this.units() || 'imperial', this.country())
         .pipe(
           tap(() => this.isLoading.set(false)),
           finalize(() => this.isLoading.set(false)),
