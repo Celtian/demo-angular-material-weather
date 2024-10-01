@@ -8,7 +8,13 @@
   "Destroy Ref": {
     "scope": "typescript",
     "prefix": "destr",
-    "body": ["private destroyRef = inject(DestroyRef);"],
+    "body": ["private readonly destroyRef = inject(DestroyRef);"],
     "description": "Destroy ref added."
+  },
+  "Route definition": {
+    "scope": "typescript",
+    "prefix": "routedef",
+    "body": ["public readonly ROUTE_DEFINITION = ROUTE_DEFINITION;"],
+    "description": "Route definition added.",
   }
 }

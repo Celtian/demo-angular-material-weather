@@ -1,9 +1,79 @@
-<p>weather works!</p>
-
 @if (isLoading()) {
   <div class="flex items-center justify-center min-h-96">
     <mat-spinner [diameter]="20"></mat-spinner>
   </div>
 } @else {
-  <pre>{{ data() | json }}</pre>
+  @if (country()) {
+    @if (data(); as d) {
+      <h1 class="font-bold mb-2">{{ d.name }}</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-3 mat-elevation-z2 rounded-sm space-y-2">
+          <div class="text-lg font-bold">Wind</div>
+          <ul class="text-sm space-y-1">
+            <li class="grid grid-cols-2">
+              <div>Speed</div>
+              <div class="text-gray-500">{{ d.wind.speed }} meter/sec</div>
+            </li>
+            <li class="grid grid-cols-2">
+              <div>Direction</div>
+              <div class="text-gray-500">{{ d.wind.deg }}°</div>
+            </li>
+            <li class="grid grid-cols-2">
+              <div>Gust</div>
+              <div class="text-gray-500">{{ d.wind.gust }} meter/sec</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-3 mat-elevation-z2 rounded-sm space-y-2">
+          <div class="text-lg font-bold">Precipitation</div>
+
+          <ul class="text-sm space-y-1">
+            <li class="grid grid-cols-2">
+              <div>Rain</div>
+              <div class="text-gray-500">{{ d.rain?.['1h'] || '—' }} mm/h</div>
+            </li>
+            <li class="grid grid-cols-2">
+              <div>Snow</div>
+              <div class="text-gray-500">{{ d.snow?.['1h'] || '—' }} mm/h</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-3 mat-elevation-z2 rounded-sm space-y-2">
+          <div class="text-lg font-bold">Temperature</div>
+
+          <ul class="text-sm space-y-1">
+            <li class="grid grid-cols-2">
+              <div>Temperature</div>
+              <div class="text-gray-500">{{ d.main.temp }} °C</div>
+            </li>
+            <li class="grid grid-cols-2">
+              <div>Feels like temperature</div>
+              <div class="text-gray-500">{{ d.main.feels_like }} °C</div>
+            </li>
+
+            <li class="grid grid-cols-2">
+              <div>Minimum temperature at the moment</div>
+              <div class="text-gray-500">{{ d.main.temp_min }} °C</div>
+            </li>
+
+            <li class="grid grid-cols-2">
+              <div>Maximum temperature at the moment</div>
+              <div class="text-gray-500">{{ d.main.temp_max }} °C</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    } @else {
+      <div class="flex items-center justify-center min-h-96">
+        <p>Data not found</p>
+      </div>
+    }
+  } @else {
+    <div class="flex items-center justify-center min-h-96">
+      <p>No country selected</p>
+    </div>
+  }
 }

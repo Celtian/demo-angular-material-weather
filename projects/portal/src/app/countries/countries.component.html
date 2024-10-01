@@ -1,9 +1,44 @@
-<p>countries works!</p>
-
 @if (isLoading()) {
   <div class="flex items-center justify-center min-h-96">
     <mat-spinner [diameter]="20"></mat-spinner>
   </div>
 } @else {
-  <pre>{{ data() | json }}</pre>
+  <div class="space-y-2">
+    @for (item of countries(); track item.iso3) {
+      <div class="flex gap-2 items-baseline justify-between py-2 px-4 mat-elevation-z2 rounded-sm">
+        <div class="flex items-baseline gap-2">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="https://flagcdn.com/16x12/{{ item.iso2 | lowercase }}.webp,
+            https://flagcdn.com/32x24/{{ item.iso2 | lowercase }}.webp 2x,
+            https://flagcdn.com/48x36/{{ item.iso2 | lowercase }}.webp 3x"
+            />
+            <source
+              type="image/png"
+              srcset="https://flagcdn.com/16x12/{{ item.iso2 | lowercase }}.png,
+            https://flagcdn.com/32x24/{{ item.iso2 | lowercase }}.png 2x,
+            https://flagcdn.com/48x36/{{ item.iso2 | lowercase }}.png 3x"
+            />
+            <img
+              [ngSrc]="'https://flagcdn.com/16x12/' + (item.iso2 | lowercase) + '.png'"
+              width="16"
+              height="12"
+              [alt]="item.country"
+            />
+          </picture>
+          <div class="font-bold text-lg">{{ item.country }}</div>
+          <div class="text-gray-400 text-sm">{{ item.iso3 }}</div>
+          <div class="text-gray-400 text-sm">{{ item.iso2 }}</div>
+        </div>
+        <a mat-icon-button [routerLink]="['/', ROUTE_DEFINITION.APP.WEATHER]" [queryParams]="{ country: item.country }">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios"></mat-icon>
+        </a>
+      </div>
+    } @empty {
+      <div class="flex items-center justify-center min-h-96">
+        <p>No countries found</p>
+      </div>
+    }
+  </div>
 }
