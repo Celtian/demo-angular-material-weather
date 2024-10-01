@@ -1,0 +1,15 @@
+<header class="sticky top-0 z-10">
+  <mat-toolbar color="primary" role="navigation">
+    <nav class="container flex items-center justify-between gap-2">
+      <a mat-button [routerLink]="['/']">Weather DEMO</a>
+    </nav>
+  </mat-toolbar>
+</header>
+<main class="flex-1">
+  <router-outlet></router-outlet>
+</main>
+<footer class="fixed bottom-0 w-full text-center">
+  <mat-toolbar color="primary">
+    <div class="container text-sm">todo</div>
+  </mat-toolbar>
+</footer>
