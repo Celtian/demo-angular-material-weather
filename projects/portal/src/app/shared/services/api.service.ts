@@ -15,9 +15,9 @@ export class ApiService {
     return this.http.get<CountriesResponseDto>('https://countriesnow.space/api/v0.1/countries');
   }
 
-  public weather(country = '') {
+  public weather(units: 'metric' | 'imperial', country = '') {
     return this.http.get<WeatherData>(
-      `https://api.openweathermap.org/data/2.5/weather?APPID=${APP_ID}&q=${country}&units=metric`,
+      `https://api.openweathermap.org/data/2.5/weather?APPID=${APP_ID}&q=${country}&units=${units}`,
     );
   }
 }

@@ -1,8 +1,8 @@
 <div class="flex gap-2 mb-4">
-  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'list' }">
+  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'list' }" [queryParamsHandling]="'merge'">
     <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="list"></mat-icon>
   </a>
-  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'grid' }">
+  <a mat-button [routerLink]="[]" [queryParams]="{ view: 'grid' }" [queryParamsHandling]="'merge'">
     <mat-icon aria-hidden="false" aria-label="Error icon" fontIcon="grid_view"></mat-icon>
   </a>
 </div>

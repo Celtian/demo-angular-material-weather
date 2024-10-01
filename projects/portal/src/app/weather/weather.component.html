@@ -1,3 +1,8 @@
+<div class="flex gap-2 mb-4">
+  <a mat-button [routerLink]="[]" [queryParams]="{ units: 'imperial' }" [queryParamsHandling]="'merge'">Imperial </a>
+  <a mat-button [routerLink]="[]" [queryParams]="{ units: 'metric' }" [queryParamsHandling]="'merge'"> Metrics </a>
+</div>
+
 @if (isLoading()) {
   <div class="flex items-center justify-center min-h-96">
     <mat-spinner [diameter]="20"></mat-spinner>
@@ -17,7 +22,9 @@
             <ul class="text-sm space-y-1">
               <li class="grid grid-cols-2">
                 <div>Speed</div>
-                <div class="text-gray-500">{{ d.wind.speed }} meter/sec</div>
+                <div class="text-gray-500">
+                  {{ d.wind.speed }} {{ units() === 'metric' ? 'meter/sec' : 'miles/hour' }}
+                </div>
               </li>
               <li class="grid grid-cols-2">
                 <div>Direction</div>
@@ -25,7 +32,9 @@
               </li>
               <li class="grid grid-cols-2">
                 <div>Gust</div>
-                <div class="text-gray-500">{{ d.wind.gust }} meter/sec</div>
+                <div class="text-gray-500">
+                  {{ d.wind.gust }} {{ units() === 'metric' ? 'meter/sec' : 'miles/hour' }}
+                </div>
               </li>
             </ul>
           </div>
@@ -51,21 +60,21 @@
             <ul class="text-sm space-y-1">
               <li class="grid grid-cols-2">
                 <div>Temperature</div>
-                <div class="text-gray-500">{{ d.main.temp }} °C</div>
+                <div class="text-gray-500">{{ d.main.temp }} {{ units() === 'metric' ? '°C' : '°F' }}</div>
               </li>
               <li class="grid grid-cols-2">
                 <div>Feels like temperature</div>
-                <div class="text-gray-500">{{ d.main.feels_like }} °C</div>
+                <div class="text-gray-500">{{ d.main.feels_like }} {{ units() === 'metric' ? '°C' : '°F' }}</div>
               </li>
 
               <li class="grid grid-cols-2">
                 <div>Minimum temperature at the moment</div>
-                <div class="text-gray-500">{{ d.main.temp_min }} °C</div>
+                <div class="text-gray-500">{{ d.main.temp_min }} {{ units() === 'metric' ? '°C' : '°F' }}</div>
               </li>
 
               <li class="grid grid-cols-2">
                 <div>Maximum temperature at the moment</div>
-                <div class="text-gray-500">{{ d.main.temp_max }} °C</div>
+                <div class="text-gray-500">{{ d.main.temp_max }} {{ units() === 'metric' ? '°C' : '°F' }}</div>
               </li>
             </ul>
           </div>
